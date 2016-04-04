@@ -103,7 +103,7 @@ class Tweet_Graph(object):
             if((time_of_creation - time).seconds <= 60):
                 break
             self.remove_edges(old_edges)
-            self.tweets.popleft()  #clear the deque from the oldest tweets
+            self.tweet_data.popleft()  #clear the deque from the oldest tweets
 
 
     def remove_edges(self, old_edges):
