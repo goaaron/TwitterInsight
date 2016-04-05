@@ -45,6 +45,6 @@ if __name__ == '__main__':
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
 
-    print "Use CTRL + C to exit at any time.\n"
+    print ("Use CTRL + C to exit at any time.\n")
     stream = Stream(auth, listener)
     stream.filter(locations=[-180,-90,180,90]) # this is the entire world, any tweet with geo-location enabled
