@@ -9,7 +9,7 @@ class Tweet_Graph(object):
 
     """
     Class that holds our tweet input. The object stores data concerning text and time
-    along with methods for generating and summarizing an updating graph of related tweets.
+    along with methods for generating and summarizing an updating graph of related hashtags.
 
     """
 
@@ -31,7 +31,6 @@ class Tweet_Graph(object):
 
         """
         hashtags = []
-        hash_pairs = []
         hashlist = tweet_data.get("hashtags")
         try:
             hashtags = [hashes['text'] for hashes in hashlist]
@@ -193,4 +192,3 @@ if __name__ == "__main__":
     output_path = os.path.join(directory_path, 'tweet_output/output.txt')
     TweetCalc = Tweet_Graph(input_path, output_path)
     TweetCalc.run()
-
