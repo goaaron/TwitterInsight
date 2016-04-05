@@ -42,8 +42,6 @@ class Tweet_Graph(object):
             print("Tweet did not contain any hashtag data")
 
 
-
-
     def acquire_time(self, tweet_data):
         """
         Input: A line of JSON holding data and metadata associated with a tweet.
@@ -54,6 +52,7 @@ class Tweet_Graph(object):
         """
         create_time = datetime.datetime.strptime(tweet_data, "%a %b %d %H:%M:%S %z %Y")
         return create_time
+
 
     def add_to_graph(self, hash_tags, creation_time):
         """
@@ -82,6 +81,7 @@ class Tweet_Graph(object):
         if edgelist:
             #push this onto the deque of tweets
             self.tweet_data.append((creation_time, edgelist))
+
 
     def remove_expired_tweets(self, time_of_creation):
         """
@@ -135,6 +135,7 @@ class Tweet_Graph(object):
         except:
             pass
 
+
     def calc_average_degree(self, output):
 
         """
@@ -153,6 +154,7 @@ class Tweet_Graph(object):
             output.write(str("{:.2f}".format(avg_degree)) + "\n")
         else:
             output.write("0.00\n")
+
 
     def run(self):
         """
