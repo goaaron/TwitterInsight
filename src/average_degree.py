@@ -20,6 +20,7 @@ class Tweet_Graph(object):
         self.tweet_data = deque()
         self.nodes = {}
         self.edges = set()
+        self.flag = 0
 
 
     def acquire_tags(self, tweet_data):
@@ -97,7 +98,8 @@ class Tweet_Graph(object):
             newtime = self.tweet_data[-1][0]
             #account for disorderly tweets which should not be included
             if((newtime - time_of_creation).seconds < 0):
-                continue
+                self.flag = 1  #a little message to ignore this tweet
+                break
             if((time_of_creation - time).seconds <= 60):
                 break
             self.remove_edges(old_edges)
@@ -182,8 +184,12 @@ class Tweet_Graph(object):
                         continue
                     creation_time = self.acquire_time(created_at)
                     self.remove_expired_tweets(creation_time)
-                    self.add_to_graph(hash_tag_for_calc, creation_time)
-                    self.calc_average_degree(text_output)
+                    if self.flag == 0:
+                        self.add_to_graph(hash_tag_for_calc, creation_time)
+                        self.calc_average_degree(text_output)
+                    else:
+                        self.flag = 0
+                        continue
 
 
 if __name__ == "__main__":
